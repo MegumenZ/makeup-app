@@ -21,12 +21,3 @@ Dibangun menggunakan **React** untuk antarmuka yang responsif dan **TensorFlow.j
 * **Machine Learning:** [TensorFlow.js](https://www.tensorflow.org/js)
 * **Icons:** [Lucide React](https://lucide.dev/)
 * **Dataset:** Makeup API / Female Daily (Custom JSON Dataset)
-
-## 🚀 Cara Menjalankan Project (Instalasi)
-
-Ikuti langkah-langkah ini untuk menjalankan proyek di komputer lokal Anda:
-
-### 1. Clone Repository
-```bash
-git clone [https://github.com/username-anda/trueshade-ai.git](https://github.com/username-anda/trueshade-ai.git)
-cd trueshade-ai
