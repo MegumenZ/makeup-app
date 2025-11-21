@@ -1,16 +1,33 @@
-# React + Vite
+# TrueShade AI 💄✨
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**TrueShade AI** adalah aplikasi web cerdas yang menggunakan *Machine Learning* untuk menganalisis warna kulit (skin tone) pengguna secara real-time dan memberikan rekomendasi produk kosmetik yang paling cocok.
 
-Currently, two official plugins are available:
+Dibangun menggunakan **React** untuk antarmuka yang responsif dan **TensorFlow.js** untuk pemrosesan AI langsung di browser (Client-side), menjaga privasi pengguna karena foto tidak perlu dikirim ke server.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+![TrueShade Banner](https://via.placeholder.com/1200x600?text=TrueShade+AI+Preview)
+*(Ganti link di atas dengan screenshot aplikasi Anda nantinya)*
 
-## React Compiler
+## 🌟 Fitur Utama
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* **📸 Analisis Wajah Real-time:** Mendeteksi tone warna kulit menggunakan kamera perangkat atau upload foto galeri.
+* **🤖 AI Powered:** Menggunakan model *Deep Learning* (MobileNetV2) yang telah di-finetune untuk klasifikasi warna kulit.
+* **🛍️ Rekomendasi Cerdas:** Menyarankan produk kosmetik (Foundation, Lipstik, dll) berdasarkan harmoni warna (Color Theory).
+* **📱 Desain Responsif:** Tampilan yang optimal baik di Desktop maupun Mobile.
+* **⚡ Cepat & Privat:** Semua proses analisis dilakukan di browser pengguna menggunakan TensorFlow.js.
 
-## Expanding the ESLint configuration
+## 🛠️ Teknologi yang Digunakan
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+* **Frontend:** [React](https://reactjs.org/) + [Vite](https://vitejs.dev/)
+* **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+* **Machine Learning:** [TensorFlow.js](https://www.tensorflow.org/js)
+* **Icons:** [Lucide React](https://lucide.dev/)
+* **Dataset:** Makeup API / Female Daily (Custom JSON Dataset)
+
+## 🚀 Cara Menjalankan Project (Instalasi)
+
+Ikuti langkah-langkah ini untuk menjalankan proyek di komputer lokal Anda:
+
+### 1. Clone Repository
+```bash
+git clone [https://github.com/username-anda/trueshade-ai.git](https://github.com/username-anda/trueshade-ai.git)
+cd trueshade-ai
