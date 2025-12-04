@@ -9,7 +9,7 @@ Dibangun menggunakan **React** untuk antarmuka yang responsif dan **TensorFlow.j
 ## 🌟 Fitur Utama
 
 * **📸 Analisis Wajah Real-time:** Mendeteksi tone warna kulit menggunakan kamera perangkat atau upload foto galeri.
-* **🤖 AI Powered:** Menggunakan model *Deep Learning* (MobileNetV2) yang telah di-finetune untuk klasifikasi warna kulit.
+* **🤖 AI Powered:** Menggunakan model *Deep Learning* (EfficientNetB3) yang telah di-finetune untuk klasifikasi warna kulit.
 * **🛍️ Rekomendasi Cerdas:** Menyarankan produk kosmetik (Foundation, Lipstik, dll) berdasarkan harmoni warna (Color Theory).
 * **📱 Desain Responsif:** Tampilan yang optimal baik di Desktop maupun Mobile.
 * **⚡ Cepat & Privat:** Semua proses analisis dilakukan di browser pengguna menggunakan TensorFlow.js.
