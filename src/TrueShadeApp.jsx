@@ -141,11 +141,49 @@ export default function App() {
 
   const capturePhoto = () => {
     if (videoRef.current) {
+      const video = videoRef.current;
       const canvas = document.createElement("canvas");
-      canvas.width = videoRef.current.videoWidth;
-      canvas.height = videoRef.current.videoHeight;
+
+      // Get dimensions
+      const videoWidth = video.videoWidth;
+      const videoHeight = video.videoHeight;
+      const elementWidth = video.clientWidth;
+      const elementHeight = video.clientHeight;
+
+      // Calculate aspect ratios
+      const aspectVideo = videoWidth / videoHeight;
+      const aspectElement = elementWidth / elementHeight;
+
+      let sx, sy, sWidth, sHeight;
+
+      // Calculate crop area (object-cover logic)
+      if (aspectElement > aspectVideo) {
+        // Container is wider: Crop height
+        sWidth = videoWidth;
+        sHeight = videoWidth / aspectElement;
+        sx = 0;
+        sy = (videoHeight - sHeight) / 2;
+      } else {
+        // Container is taller: Crop width
+        sWidth = videoHeight * aspectElement;
+        sHeight = videoHeight;
+        sx = (videoWidth - sWidth) / 2;
+        sy = 0;
+      }
+
+      // Set canvas to the cropped resolution (high quality)
+      canvas.width = sWidth;
+      canvas.height = sHeight;
+
       const ctx = canvas.getContext("2d");
-      ctx.drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
+
+      // Mirror the image to match the preview (transform scale-x-[-1])
+      ctx.translate(canvas.width, 0);
+      ctx.scale(-1, 1);
+
+      // Draw the cropped portion
+      ctx.drawImage(video, sx, sy, sWidth, sHeight, 0, 0, sWidth, sHeight);
+
       setPreviewImage(canvas.toDataURL("image/jpeg", 0.9));
       stopCamera();
       startAnalysis();
@@ -356,17 +394,38 @@ export default function App() {
               </span>
               <h1 className="text-4xl md:text-6xl font-serif font-bold leading-tight text-stone-900">
                 Temukan Shade <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-orange-400">Sempurna Kamu</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-orange-400">
+                  Sempurna Kamu
+                </span>
               </h1>
               <p className="text-lg text-stone-600 md:max-w-md mx-auto md:mx-0 leading-relaxed">
-                Unggah foto dan biarkan AI mencocokkan warna kulitmu dengan ribuan produk kosmetik nyata.
+                Unggah foto dan biarkan AI mencocokkan warna kulitmu dengan
+                ribuan produk kosmetik nyata.
               </p>
+
+              {/* BUTTONS */}
               <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start pt-4">
                 <button
-                  onClick={() => document.getElementById("analyzer").scrollIntoView({ behavior: "smooth" })}
+                  onClick={() =>
+                    document
+                      .getElementById("analyzer")
+                      .scrollIntoView({ behavior: "smooth" })
+                  }
                   className="px-8 py-4 bg-stone-900 text-white rounded-full font-medium hover:bg-rose-500 transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-rose-200"
                 >
-                  <Camera size={20} /> Coba Analisis Sekarang
+                  <Camera size={20} />
+                  Coba Analisis Sekarang
+                </button>
+                <button
+                  onClick={() =>
+                    document
+                      .getElementById("how-it-works")
+                      .scrollIntoView({ behavior: "smooth" })
+                  }
+                  className="px-8 py-4 bg-white text-stone-800 border border-stone-200 rounded-full font-medium hover:bg-stone-50 transition-all duration-300 flex items-center justify-center gap-2 shadow-sm hover:shadow-md"
+                >
+                  <PlayCircle size={20} />
+                  Cara Kerja
                 </button>
               </div>
             </div>
@@ -382,6 +441,61 @@ export default function App() {
           </div>
         </div>
       </header>
+
+      {/* HOW IT WORKS SECTION */}
+      <section
+        id="how-it-works"
+        className="py-20 bg-white border-b border-stone-100"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="font-serif text-3xl font-bold text-stone-900">
+              Cara Kerja
+            </h2>
+            <p className="text-stone-500 mt-2">
+              Tiga langkah mudah menuju penampilan sempurna.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            <div className="flex flex-col items-center text-center group">
+              <div className="w-20 h-20 bg-rose-50 rounded-full flex items-center justify-center text-rose-500 mb-6 group-hover:scale-110 transition-transform duration-300 shadow-sm">
+                <Upload size={32} />
+              </div>
+              <h3 className="text-xl font-bold text-stone-900 mb-2">
+                1. Upload Foto
+              </h3>
+              <p className="text-stone-500 leading-relaxed px-4">
+                Ambil selfie langsung atau unggah foto close-up wajahmu dari
+                galeri.
+              </p>
+            </div>
+            <div className="flex flex-col items-center text-center group">
+              <div className="w-20 h-20 bg-rose-50 rounded-full flex items-center justify-center text-rose-500 mb-6 group-hover:scale-110 transition-transform duration-300 shadow-sm">
+                <Scan size={32} />
+              </div>
+              <h3 className="text-xl font-bold text-stone-900 mb-2">
+                2. Analisis AI
+              </h3>
+              <p className="text-stone-500 leading-relaxed px-4">
+                Sistem cerdas kami mendeteksi undertone dan warna kulitmu dalam
+                hitungan detik.
+              </p>
+            </div>
+            <div className="flex flex-col items-center text-center group">
+              <div className="w-20 h-20 bg-rose-50 rounded-full flex items-center justify-center text-rose-500 mb-6 group-hover:scale-110 transition-transform duration-300 shadow-sm">
+                <ShoppingBag size={32} />
+              </div>
+              <h3 className="text-xl font-bold text-stone-900 mb-2">
+                3. Temukan Produk
+              </h3>
+              <p className="text-stone-500 leading-relaxed px-4">
+                Dapatkan rekomendasi kosmetik yang warnanya dijamin cocok
+                untukmu.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* ANALYZER SECTION */}
       <section id="analyzer" className="py-20 bg-stone-900 text-white overflow-hidden relative">
