@@ -4,8 +4,6 @@
 
 Dibangun menggunakan **React** untuk antarmuka yang responsif dan **TensorFlow.js** untuk pemrosesan AI langsung di browser (Client-side), menjaga privasi pengguna karena foto tidak perlu dikirim ke server.
 
-![TrueShade Banner](https://via.placeholder.com/1200x600?text=TrueShade+AI+Preview)
-
 ## 🌟 Fitur Utama
 
 * **📸 Analisis Wajah Real-time:** Mendeteksi tone warna kulit menggunakan kamera perangkat atau upload foto galeri.
